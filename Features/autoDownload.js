@@ -3,7 +3,7 @@ const { createWriteStream, unlinkSync, readFileSync, existsSync } = require("fs"
 const { randomBytes } = require("crypto")
 const { spawn } = require("child_process")
 module.exports = async data => {
-	const tiktokRegex = new RegExp(/^https?:\/\/(www\.|vm\.)?(tiktok\.com)\/?(.*)$/g)
+	const tiktokRegex = new RegExp(/^https?:\/\/(www\.|vm\.)?(tiktok\.com)\/?(.*)$/gi)
 	if(tiktokRegex.test(data.msg)){
 		logger.info("link tiktok terdeteksi")
 		const link = data.msg.match(tiktokRegex)[0]
