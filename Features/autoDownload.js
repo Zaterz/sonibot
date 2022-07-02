@@ -22,19 +22,9 @@ module.exports = async data => {
 				writer.close()
 			})
 			writer.on("close", async() => {
-				if(error) return logger.error("gagal download video tiktok")
-				const cmd = "ffmpeg"
-				const argu = ["-i", "./Media/tmp/"+id, "-vcodec", "libx265", "-crf", "28", "./Media/tmp/"+ID+"c.mp4"]
-				const proc = spawn(cmd,argu)
-				proc.on("close", async () => {
-					function herr () {
-						unlinkSync(id)
-					}
-					if(!existsSync("./Media/tmp/"+ID+"c.mp4")) return
-					await sock.sendMessage(data.id,{video: readFileSync("./Media/tmp/"+ID+"c.mp4")},{quoted:data.message})
+				if(error) return
+					await sock.sendMessage(data.id,{video: readFileSync("./Media/tmp/"+id)},{quoted:data.message})
 					unlinkSync("./Media/tmp/"+id)
-					unlinkSync("./Media/tmp/"+ID+"c.mp4")
-				})
 			})
 		} catch(err){
 			logger.error(err)
