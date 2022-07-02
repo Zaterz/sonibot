@@ -1,7 +1,7 @@
 const axios = require("axios")
 const { createWriteStream, unlinkSync, readFileSync, existsSync } = require("fs")
 const { randomBytes } = require("crypto")
-const { spawn } = child_process
+const { spawn } = require("child_process")
 module.exports = async data => {
 	const tiktokRegex = new RegExp(/^https?:\/\/(www\.|vm\.)?(tiktok\.com)\/?(.*)$/g)
 	if(tiktokRegex.test(data.msg)){
