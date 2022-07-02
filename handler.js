@@ -20,6 +20,7 @@ sock.ev.on("messages.upsert", async Message => {
     this.msg = (this.type == 'conversation') ? msg.message.conversation : (this.type == 'extendedTextMessage') ? msg.message.extendedTextMessage.text : (this.type == 'imageMessage') ? msg.message.imageMessage.caption : msg.message.hasOwnProperty('listResponseMessage') ? msg.message.listResponseMessage.singleSelectReply.selectedRowId : msg.message.hasOwnProperty("buttonsResponseMessage") ? msg.message.buttonsResponseMessage.selectedButtonId : (this.type == 'videoMessage') ? msg.message.videoMessage.caption : (this.type == "reactionMessage") ? msg.message.reactionMessage.text : ""
   }
   const data = new info(type,msg)
+  await sock.readMessages(msg.key)
   await features(data)
   logger.info(`[${data.id}] ${data.msg}`)
   let isExec = false
