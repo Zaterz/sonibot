@@ -2,7 +2,6 @@ const axios = require("axios")
 module.exports = {
   name: ["sim","simi"],
   desc: "ngomong sama simi :D",
-  args: true,
   exec: async(data) => {
 	const chatSimi = async(msg) => {
     try {

@@ -6,6 +6,7 @@ global.mongoose = require("mongoose")
 global.config = require("./config/config.js")
 global.moment = require("moment")
 const stream = pretty({ colorize: true, hideObject: false, translateTime: true  })
+const schema = require("./schema.js")
 global.logger = P(stream)
 global.features = require("./Features/handle.js")
 
@@ -14,12 +15,14 @@ const db = mongoose.connection
 moment.locale("id")
 db.once("open", () => {
 	logger.info("Connected to database")
-	
 })
 
 db.on("error", (err) => {
 	logger.fatal("Terjadi kesalah di database")
 })
+
+global.users = mongoose.model("users",schema.users)
+global.group = mongoose.model("group",schema.group)
 
 function start(){
  global.sock = makeWASocket({

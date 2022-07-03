@@ -2,7 +2,12 @@ const axios = require("axios")
 const { createWriteStream, unlinkSync, readFileSync, existsSync } = require("fs")
 const { randomBytes } = require("crypto")
 const { spawn } = require("child_process")
+const { isJidGroup } = require("@adiwajshing/baileys")
 module.exports = async data => {
+	if(!isJidGroup(data.id)) return
+	const gc = await group.findById(data.id)
+	if(!gc) return
+	if(!gc.autoDownload) return
 	const tiktokRegex = new RegExp(/^https?:\/\/(www\.|vm\.)?(tiktok\.com)\/?(.*)$/gm)
 	if(tiktokRegex.test(data.msg)){
 		logger.info("link tiktok terdeteksi")

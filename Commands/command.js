@@ -10,8 +10,8 @@ fs.readdirSync("./Commands").filter(d => !d.includes("."))
 					return {
 						name: cmd.name,
 						desc: cmd.desc,
-						args: cmd.hasOwnProperty("args") ? cmd.args : false,
-						exec: cmd.exec
+						exec: cmd.exec,
+						needReg: cmd.hasOwnProperty("needReg") ? cmd.needReg : false
 					}} catch (err) {
 						logger.error("Terdapat error pada folder "+folder+" di file "+file)
 						logger.error(err)
@@ -19,4 +19,3 @@ fs.readdirSync("./Commands").filter(d => !d.includes("."))
 				})
 				logger.info("Berhasil load folder "+folder)
 			})
-console.log(commands)

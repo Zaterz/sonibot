@@ -2,7 +2,6 @@ const {isJidGroup} = require("@adiwajshing/baileys")
 module.exports = {
   name: ["siapakah","siapa"],
   desc: "Siapa?",
-  args: true,
   exec: async(data) => {
 	if(!isJidGroup(data.id)) return sock.sendMessage(data.id,{text: "Command ini hanya bisa digunakan didalam group."})
 	const metadata = await sock.groupMetadata(data.id)
