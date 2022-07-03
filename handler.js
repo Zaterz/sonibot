@@ -38,7 +38,7 @@ sock.ev.on("messages.upsert", async Message => {
 		file.name.forEach(async a => {
 			if(a == data.msg.split(/ /gi)[0].slice(1)){
 				if(file.needReg){
-					const user = await users.findById(data.id)
+					const user = await users.findById(data.sender)
 						if(!user){
 							sock.sendMessage(data.id,{ text: `Command ini hanya bisa digunakan setelah kamu register silakan ketik *${config.prefix}reg* untuk register` },{quoted:data.message})
 							return
